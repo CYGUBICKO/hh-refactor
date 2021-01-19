@@ -34,6 +34,10 @@ loadata.Rout: loadata.R loadatafun.R
 interview_filters.Rout: interview_filters.R
 filter_interviews.Rout: filter_interviews.R interview_filters.R loadata.rda
 
+## Examine types of missing values in the raw data
+missingdatafuns.Rout: missingdatafuns.R
+raw_missing_summary.Rout: raw_missing_summary.R missingdatafuns.R filter_interviews.rda 
+
 
 ######################################################################
 

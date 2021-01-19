@@ -14,4 +14,19 @@ working_df <- (working_df
 	%>% ungroup()
 )
 
-str(working_df)
+## More than 1 HH interview per year
+tab_intperyear <- as.data.frame(table(working_df$nn))
+print(tab_intperyear)
+
+## Keep latest interview per HH per year
+working_df <- (working_df
+	%>% filter(keep==keep_n)
+	%>% select(-nn, -keep)
+)
+
+head(working_df)
+
+saveVars(working_df
+	, codebook
+	, tab_intperyear
+)
