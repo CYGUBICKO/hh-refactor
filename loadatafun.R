@@ -74,3 +74,5 @@ loadatafun <- function(df_name = df_name
 	)
 }
 
+saveEnvironment()
+

@@ -2,7 +2,7 @@ library(shellpipes)
 library(data.table)
 library(dplyr)
 
-sourceFiles()
+commandEnvironments()
 
 # This script uses the loadatafun function to generate .rds file.
 

@@ -21,14 +21,14 @@ funs:
 Ignore += funs
 alldirs += funs
 
-
 ######################################################################
 
 ## Data symbolic links
 ### ln -fs ~/Dropbox/aphrc/hh_amen_xtics/data/ data
 
 loadatafun.Rout: loadatafun.R
-loadata.Rout: loadata.R loadatafun.R
+	$(wrapR)
+loadata.Rout: loadata.R loadatafun.rda
 
 ## Filter data
 interview_filters.Rout: interview_filters.R
@@ -43,7 +43,7 @@ raw_missing_summary.Rout: raw_missing_summary.R missingdatafuns.R filter_intervi
 
 ### Makestuff
 
-Sources += Makefile
+Sources += Makefile notes.md
 
 ## Sources += content.mk
 ## include content.mk
