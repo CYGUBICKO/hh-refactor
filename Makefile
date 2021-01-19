@@ -27,7 +27,6 @@ alldirs += funs
 ### ln -fs ~/Dropbox/aphrc/hh_amen_xtics/data/ data
 
 loadatafun.Rout: loadatafun.R
-	$(wrapR)
 loadata.Rout: loadata.R loadatafun.rda
 
 ## Filter data

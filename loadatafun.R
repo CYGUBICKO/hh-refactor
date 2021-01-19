@@ -1,3 +1,5 @@
+library(shellpipes)
+
 ## Load data function
 
 # The function loads the raw data, extracts codebook and save the a .rds file. 
@@ -74,5 +76,5 @@ loadatafun <- function(df_name = df_name
 	)
 }
 
-saveEnvironment()
+saveVars(loadatafun)
 
