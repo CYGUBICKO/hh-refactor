@@ -21,6 +21,10 @@ funs:
 Ignore += funs
 alldirs += funs
 
+## Some functions which might go to shellpipes
+shellpipesfuns.Rout: shellpipesfuns.R
+	$(wrapR)
+
 ######################################################################
 
 ## Data symbolic links
@@ -31,12 +35,16 @@ loadata.Rout: loadata.R loadatafun.rda
 
 ## Filter data
 interview_filters.Rout: interview_filters.R
-filter_interviews.Rout: filter_interviews.R interview_filters.R loadata.rda
+filter_interviews.Rout: filter_interviews.R interview_filters.rda loadata.rda
 
 ## Examine types of missing values in the raw data
 missingdatafuns.Rout: missingdatafuns.R
-raw_missing_summary.Rout: raw_missing_summary.R missingdatafuns.R filter_interviews.rda 
+raw_missing_summary.Rout: raw_missing_summary.R missingdatafuns.rda filter_interviews.rda 
 
+## Relabelling and recoding categorical variables
+labelsfuns.Rout: labelsfuns.R
+generate_labels.Rout: generate_labels.R labelsfuns.rda shellpipesfuns.rda filter_interviews.rda
+generate_labels.Rout.xlsx: generate_labels.Rout ;
 
 ######################################################################
 

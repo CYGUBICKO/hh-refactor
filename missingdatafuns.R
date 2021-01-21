@@ -1,6 +1,8 @@
-## Missingness function
+library(shellpipes)
 
-missPropFunc <- function(df){
+## Missingness functions
+
+missProp <- function(df){
 	n <- nrow(df)
   	df <- as.data.frame(df)
 	miss_count <- apply(df, 2
@@ -42,4 +44,7 @@ NAProps <- function(df){
 	)
 }
 
-
+saveVars(missProp
+	, missPattern
+	, NAProps
+)

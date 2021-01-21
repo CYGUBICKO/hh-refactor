@@ -4,7 +4,6 @@ library(dplyr)
 library(tibble)
 
 commandEnvironments()
-sourceFiles()
 
 #### ---- Missing per missing value indicator ----
 miss_pattern <- list(miss_impute = "^missing\\:impute"
@@ -42,5 +41,7 @@ miss_category_summary <- (codebook
 )
 print(miss_category_summary)
 
-saveVars(miss_category_summary)
+saveVars(miss_category_summary
+	, tab_intperyear
+)
 

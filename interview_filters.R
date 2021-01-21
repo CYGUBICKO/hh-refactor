@@ -1,8 +1,6 @@
 library(shellpipes)
 library(dplyr)
 
-commandEnvironments()
-
 ## Completed surveys
 complete_status <- "completed"
 

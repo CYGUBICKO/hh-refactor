@@ -2,7 +2,6 @@ library(shellpipes)
 library(dplyr)
 
 commandEnvironments()
-sourceFiles()
 
 working_df <- (working_df
 	%>% filter(intvwresult==complete_status & (!intvwyear %in% years_drop))
