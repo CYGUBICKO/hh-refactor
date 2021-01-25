@@ -29,10 +29,13 @@ shellpipesfuns.Rout: shellpipesfuns.R
 ######################################################################
 
 ## Data symbolic links
-### ln -fs ~/Dropbox/aphrc/hh_amen_xtics/data/ data
+### ln -fs ~/Dropbox/academic/aphrc/hh_amen_xtics/data/ data ##
+### ln -fs ~/Dropbox/academic/aphrc/hh_amen_xtics/cache/ cachestuff ##
 
 loadatafun.Rout: loadatafun.R
 loadata.Rout: loadata.R loadatafun.rda
+
+load.Rout: load.R data/NUHDSS_hhamenitiescharacteristics_anon.dta
 
 ## Filter data
 interview_filters.Rout: interview_filters.R
