@@ -28,6 +28,7 @@ shellpipesfuns.Rout: shellpipesfuns.R
 
 ######################################################################
 
+Ignore += data cachestuff
 ## Data symbolic links
 ### ln -fs ~/Dropbox/academic/aphrc/hh_amen_xtics/data/ data ##
 ### ln -fs ~/Dropbox/academic/aphrc/hh_amen_xtics/cache/ cachestuff ##
