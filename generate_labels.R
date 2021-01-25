@@ -229,3 +229,20 @@ all_labs <- list(water_labs = water_labs
 print(all_labs)
 
 xlsxSave(all_labs)
+
+saveVars(water_labs
+	, garbage_labs
+	, toilet_labs
+	, floor_labs
+	, roof_labs
+	, wall_labs
+	, cook_labs
+	, light_labs
+	, rent_labs
+	, inc30days_labs
+	, grewcrops_labs
+	, foodeaten30days_labs
+	, hh30days_nofoodmoney_labs
+	, selfrating_labs
+)
+

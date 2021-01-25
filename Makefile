@@ -9,8 +9,9 @@ vim_session:
 ######################################################################
 
 Sources += $(wildcard *.R *.md.)
-
 autopipeR = defined
+
+Ignore += $(wildcard *.xlsx)
 
 ######################################################################
 
@@ -45,6 +46,15 @@ raw_missing_summary.Rout: raw_missing_summary.R missingdatafuns.rda filter_inter
 labelsfuns.Rout: labelsfuns.R
 generate_labels.Rout: generate_labels.R labelsfuns.rda shellpipesfuns.rda filter_interviews.rda
 generate_labels.Rout.xlsx: generate_labels.Rout ;
+
+######################################################################
+
+## Cleaning
+cleaning.Rout: cleaning.R generate_labels.rda shellpipesfuns.rda filter_interviews.rda
+cleaning.Rout.xlsx: cleaning.Rout;
+
+## Missingness summary after cleaning
+clean_missing_summary.Rout: clean_missing_summary.R missingdatafuns.rda cleaning.rda
 
 ######################################################################
 
