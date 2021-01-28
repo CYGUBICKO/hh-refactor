@@ -78,9 +78,8 @@ working_df <- (left_join(working_df
 ##### Roof tabs
 tab_vars <- "roofmaterial_new"
 roof_tabs <- sapply(working_df[, tab_vars, drop = FALSE], formatabs, simplify=FALSE)
-roof_tabs
+print(roof_tabs)
 
-quit()
 #### Material of the wall
 working_df <- (left_join(working_df
 		, wall_labs
@@ -90,8 +89,8 @@ working_df <- (left_join(working_df
 )
 ##### Wall tabs
 tab_vars <- "wallmaterial_new"
-wall_tabs <- sapply(working_df[, tab_vars, drop = FALSE], function(x){table(x, useNA = "always")})
-wall_tabs <- data.frame(wall_tabs)
+wall_tabs <- sapply(working_df[, tab_vars, drop = FALSE], formatabs, simplify=FALSE)
+print(wall_tabs)
 
 
 #### Main source of cooking fuel
@@ -104,8 +103,8 @@ working_df <- (left_join(working_df
 
 ##### Cooking tabs
 tab_vars <- "cookingfuel_new"
-cooking_tabs <- sapply(working_df[, tab_vars, drop = FALSE], function(x){table(x, useNA = "always")})
-cooking_tabs <- data.frame(cooking_tabs)
+cooking_tabs <- sapply(working_df[, tab_vars, drop = FALSE], formatabs, simplify=FALSE)
+print(cooking_tabs)
 
 #### Main source of lighting
 working_df <- (left_join(working_df
@@ -117,8 +116,8 @@ working_df <- (left_join(working_df
 
 ##### Lighting tabs
 tab_vars <- "lighting_new"
-lighting_tabs <- sapply(working_df[, tab_vars, drop = FALSE], function(x){table(x, useNA = "always")})
-lighting_tabs <- data.frame(lighting_tabs)
+lighting_tabs <- sapply(working_df[, tab_vars, drop = FALSE], formatabs, simplify=FALSE)
+print(lighting_tabs)
 
 #### Main Dwelling/rentals
 working_df <- (left_join(working_df
@@ -130,8 +129,8 @@ working_df <- (left_join(working_df
 
 ##### Dwelling tabs
 tab_vars <- "rentorown_new"
-rentorown_tabs <- sapply(working_df[, tab_vars, drop = FALSE], function(x){table(x, useNA = "always")})
-rentorown_tabs <- data.frame(rentorown_tabs)
+rentorown_tabs <- sapply(working_df[, tab_vars, drop = FALSE], formatabs, simplify=FALSE)
+print(rentorown_tabs)
 
 #### Household possessions
 hhposes_vars <- grep("^own", colnames(working_df), value = TRUE)
@@ -156,9 +155,9 @@ working_df <- (working_df
 
 #### Household posession tabs
 tab_vars <- paste0(hhposes_vars, "_new")
-hhposes_tabs <- sapply(working_df[, tab_vars, drop = FALSE], function(x){as.data.frame(table(x, useNA = "always"))}
-	, simplify = FALSE
+hhposes_tabs <- sapply(working_df[, tab_vars, drop = FALSE], formatabs, simplify = FALSE
 )
+print(hhposes_tabs)
 
 #### Household income
 working_df <- (left_join(working_df
@@ -186,8 +185,8 @@ working_df <- (left_join(working_df
 
 #### Household income tabs
 tab_vars <- paste0("inc30days_total", "_new")
-inc30days_total_tabs <- sapply(working_df[, tab_vars, drop = FALSE], function(x){table(x, useNA = "always")})
-inc30days_total_tabs <- data.frame(inc30days_total_tabs)
+inc30days_total_tabs <- sapply(working_df[, tab_vars, drop = FALSE], formatabs, simplify=FALSE)
+head(inc30days_total_tabs)
 
 #### Household expenditure in KES
 hhexpense_vars <- grep("^expend\\_", colnames(working_df), value = TRUE)
@@ -203,9 +202,8 @@ working_df <- (working_df
 
 #### Household expenditure tabs
 tab_vars <- paste0(hhexpense_vars, "_new")
-hhexpense_tabs <- sapply(working_df[, tab_vars, drop = FALSE], function(x){as.data.frame(table(x, useNA = "always"))}
-	, simplify = FALSE
-)
+hhexpense_tabs <- sapply(working_df[, tab_vars, drop = FALSE], formatabs, simplify = FALSE)
+#head(hhexpense_tabs)
 
 #### Grow crops
 working_df <- left_join(working_df
@@ -215,8 +213,8 @@ working_df <- left_join(working_df
 
 #### Grew crops tabs
 tab_vars <- paste0("grewcrops", "_new")
-grewcrops_tabs <- sapply(working_df[, tab_vars, drop = FALSE], function(x){table(x, useNA = "always")})
-grewcrops_tabs <- data.frame(grewcrops_tabs)
+grewcrops_tabs <- sapply(working_df[, tab_vars, drop = FALSE], formatabs, simplify=FALSE)
+print(grewcrops_tabs)
 
 #### No. of meals served in 2 days
 b4special_vars <- "b4specevent2days_meals"
@@ -229,8 +227,8 @@ working_df <- (working_df
 
 #### Meals served tabs
 tab_vars <- paste0("b4specevent2days_meals", "_new")
-b4specevent2days_meals_tabs <- sapply(working_df[, tab_vars, drop = FALSE], function(x){table(x, useNA = "always")})
-b4specevent2days_meals_tabs <- data.frame(b4specevent2days_meals_tabs)
+b4specevent2days_meals_tabs <- sapply(working_df[, tab_vars, drop = FALSE], formatabs, simplify=FALSE)
+print(b4specevent2days_meals_tabs)
 
 #### 5.11: Food in the last 30 days
 working_df <- left_join(working_df
@@ -240,8 +238,8 @@ working_df <- left_join(working_df
 
 #### 5.11: Food tabs
 tab_vars <- paste0("foodeaten30days", "_new")
-foodeaten30days_tabs <- sapply(working_df[, tab_vars, drop = FALSE], function(x){table(x, useNA = "always")})
-foodeaten30days_tabs <- data.frame(foodeaten30days_tabs)
+foodeaten30days_tabs <- sapply(working_df[, tab_vars, drop = FALSE], formatabs, simplify=FALSE)
+print(foodeaten30days_tabs)
 
 #### 5.12: HH gone hungry because no money to buy food
 working_df <- left_join(working_df
@@ -251,8 +249,8 @@ working_df <- left_join(working_df
 
 #### 5.12: Hunger tabs
 tab_vars <- paste0("30days_nofoodmoney", "_new")
-hh30days_nofoodmoney_tabs <- sapply(working_df[, tab_vars, drop = FALSE], function(x){table(x, useNA = "always")})
-hh30days_nofoodmoney_tabs <- data.frame(hh30days_nofoodmoney_tabs)
+hh30days_nofoodmoney_tabs <- sapply(working_df[, tab_vars, drop = FALSE], formatabs, simplify=FALSE)
+print(hh30days_nofoodmoney_tabs)
 
 #### 6.0: Household shocks experienced
 prob_vars <- grep("^prob\\_", colnames(working_df), value = TRUE)
@@ -265,8 +263,8 @@ working_df <- (working_df
 
 #### 6.0: HH shocks tabs
 tab_vars <- paste0(prob_vars, "_new")
-prob_tabs <- t(sapply(working_df[, tab_vars, drop = FALSE], function(x){table(x, useNA = "always")}))
-prob_tabs <- data.frame(prob_tabs)
+prob_tabs <- sapply(working_df[, tab_vars, drop = FALSE], formatabs, simplify=FALSE)
+print(prob_tabs)
 
 #### Household number of problems
 numprob_vars <- grep("^numprob\\_", colnames(working_df), value = TRUE)
@@ -299,9 +297,8 @@ working_df <- (working_df
 
 #### HH number of problems tabs
 tab_vars <- paste0(numprob_vars, "_new")
-numprob_tabs <- sapply(working_df[, tab_vars, drop = FALSE], function(x){as.data.frame(table(x, useNA = "always"))}
-	, simplify = FALSE
-)
+numprob_tabs <- sapply(working_df[, tab_vars, drop = FALSE], formatabs, simplify = FALSE)
+print(numprob_tabs)
 
 ### Respondent ladder
 working_df <- (left_join(working_df
@@ -313,7 +310,7 @@ working_df <- (left_join(working_df
 
 #### HH self-rating tabs
 tab_vars <- paste0("selfrating", "_new")
-selfrating_tabs <- sapply(working_df[, tab_vars, drop = FALSE], function(x){table(x, useNA = "always")})
+selfrating_tabs <- sapply(working_df[, tab_vars, drop = FALSE], formatabs, simplify=FALSE)
 
 
 ### Summary tables
@@ -332,10 +329,8 @@ cleaning_tabs <- list(wash_tabs = wash_tabs
 	, selfrating_tabs = selfrating_tabs
 )
 
-cleaning_tabs
-
 cleaning_tabs <- c(cleaning_tabs, hhposes_tabs, hhexpense_tabs, prob_tabs, numprob_tabs)
 
-xlsxSave(cleaning_tabs)
+xlsxSave(cleaning_tabs, colNames = TRUE)
 
 saveVars(working_df)
