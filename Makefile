@@ -26,6 +26,10 @@ alldirs += funs
 shellpipesfuns.Rout: shellpipesfuns.R
 	$(wrapR)
 
+## Preset ggplot theme
+ggtheme.Rout: ggtheme.R
+	$(wrapR)
+
 ######################################################################
 
 Ignore += data cachestuff
@@ -37,6 +41,7 @@ linkdir = ~/Dropbox/aphrc/hh_amen_xtics
 	@if [ -f $* ]; then echo ""; else ln -fs $</$* $* ; fi
 
 ## Data folder
+### Why can't we use this as dependency in loadata.Rout?
 data: data.slink
 
 ## cachestuff
@@ -44,7 +49,7 @@ cachestuff: cachestuff.slink
 
 ## Loading data
 loadatafun.Rout: loadatafun.R
-loadata.Rout: loadata.R data/NUHDSS_hhamenitiescharacteristics_anon.dta loadatafun.rda
+loadata.Rout: loadata.R loadatafun.rda data/NUHDSS_hhamenitiescharacteristics_anon.dta loadatafun.rda
 
 ## Filter data
 interview_filters.Rout: interview_filters.R
@@ -66,7 +71,29 @@ cleaning.Rout: cleaning.R generate_labels.rda shellpipesfuns.rda filter_intervie
 cleaning.Rout.xlsx: cleaning.Rout;
 
 ## Missingness summary after cleaning
-clean_missing_summary.Rout: clean_missing_summary.R missingdatafuns.rda cleaning.rda
+clean_missing_summary.Rout: clean_missing_summary.R missingdatafuns.rda cleaning.rda raw_missing_summary.rda shellpipesfuns.rda
+clean_missing_summary.Rout.xlsx: clean_missing_summary.Rout;
+
+## Drop variables with -% missing
+drop_variables.Rout: drop_variables.R clean_missing_summary.rda
+
+## Group variables per section in the questionnaire
+variable_groups.Rout: variable_groups.R shellpipesfuns.rda missingdatafuns.rda drop_variables.rda
+variable_groups.Rout.xlsx: variable_groups.Rout;
+
+## Drop all cases with any missing information or specification
+complete_cases.Rout: complete_cases.R missingdatafuns.rda variable_groups.rda
+
+## Analysis data: outliers dropped according to some cutoff points
+analysis_data.Rout: analysis_data.R variable_groups.rda complete_cases.rda
+
+######################################################################
+
+## Descriptives
+descplotfuns.Rout: descplotfuns.R
+	$(wrapR)
+descriptive_stats.Rout: descriptive_stats.R ggtheme.rda descplotfuns.rda analysis_data.rda variable_groups.rda
+
 
 ######################################################################
 

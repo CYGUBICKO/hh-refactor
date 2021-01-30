@@ -29,7 +29,7 @@ missPattern <- function(df, pattern = "^refuse|^NIU|^don\\'t|^missing\\:impute")
    )
 }
 
-#### NA proportion per variable
+## NA proportion per variable
 
 NAProps <- function(df){
 	n <- nrow(df)
@@ -44,7 +44,15 @@ NAProps <- function(df){
 	)
 }
 
+## Impute missing indicator function
+imputeCase <- function(df, patterns = "missing:impute"){
+	apply(df, 1, function(x){
+		any(x %in% patterns)
+	})
+}
+
 saveVars(missProp
 	, missPattern
 	, NAProps
+	, imputeCase
 )

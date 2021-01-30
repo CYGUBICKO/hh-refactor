@@ -17,7 +17,7 @@ loadatafun <- function(df_name = df_name){
 
 	# Generate codebook from attributes
 	codebook <- (var_labels 
-		%>% melt()
+		%>% reshape2::melt()
 		%>% rename(description = value, variable = L1)
 		%>% select(variable, description)
 		%>% mutate(description = ifelse(description == ""|is.na(description)
@@ -49,8 +49,6 @@ AtribLst <- function(df, attrC, isNullC){
   	# Returns list of values of the col attribute attrC, if present, else isNullC
 	lapply(df, ColAttr, attrC=attrC, ifIsNull=isNullC)
 }
-
-
 
 saveVars(loadatafun
 	, ColAttr

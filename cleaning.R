@@ -6,7 +6,7 @@ commandEnvironments()
 #### ---- Well formatted simple tables ---
 formatabs <- function(x) {
 	tab <- data.frame(table(x, useNA = "always"))
-	tab$labels <- row.names(tab)
+	colnames(tab) <- c("labels", "Freq")
 	tab <- tab[, c("labels", "Freq")]
 	return(tab)
 }
@@ -51,9 +51,9 @@ working_df <- (working_df
 )
 
 ##### WASH tabs
-tab_vars <- paste0(c("drinkwatersource", "toilet_5plusyrs", "garbagedisposal"), "_new")
-wash_tabs <- t(sapply(working_df[, tab_vars], function(x){table(x, useNA = "always")}))
-wash_tabs <- data.frame(wash_tabs)
+tab_vars <- paste0(c("drinkwatersource", "toilet_5plusyrs", "garbagedisposal"), "_new")[1]
+wash_tabs <- sapply(working_df[, tab_vars], formatabs, simplify=FALSE)
+print(wash_tabs)
 
 #### Material of the floor
 working_df <- (left_join(working_df
@@ -314,22 +314,24 @@ selfrating_tabs <- sapply(working_df[, tab_vars, drop = FALSE], formatabs, simpl
 
 
 ### Summary tables
-cleaning_tabs <- list(wash_tabs = wash_tabs
-	, floor_tabs = floor_tabs 
-	, roof_tabs = roof_tabs
-	, wall_tabs = wall_tabs
-	, cooking_tabs = cooking_tabs
-	, lighting_tabs = lighting_tabs
-	, rentorown_tabs = rentorown_tabs
-	, inc30days_total_tabs = inc30days_total_tabs
-	, grewcrops_tabs = grewcrops_tabs
-	, b4specevent2days_meals_tabs = b4specevent2days_meals_tabs
-	, foodeaten30days_tabs = foodeaten30days_tabs
-	, hh30days_nofoodmoney_tabs = hh30days_nofoodmoney_tabs
-	, selfrating_tabs = selfrating_tabs
+cleaning_tabs <- c(wash_tabs
+	, floor_tabs
+	, roof_tabs
+	, wall_tabs
+	, cooking_tabs
+	, lighting_tabs
+	, rentorown_tabs
+	, inc30days_total_tabs
+	, grewcrops_tabs
+	, b4specevent2days_meals_tabs
+	, foodeaten30days_tabs
+	, hh30days_nofoodmoney_tabs
+	, selfrating_tabs
+	, hhposes_tabs
+	, hhexpense_tabs
+	, prob_tabs
+	, numprob_tabs
 )
-
-cleaning_tabs <- c(cleaning_tabs, hhposes_tabs, hhexpense_tabs, prob_tabs, numprob_tabs)
 
 xlsxSave(cleaning_tabs, colNames = TRUE)
 
