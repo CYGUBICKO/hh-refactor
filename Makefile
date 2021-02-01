@@ -36,20 +36,25 @@ Ignore += data cachestuff
 ## Data symbolic links
 ### ln -fs ~/Dropbox/academic/aphrc/hh_amen_xtics/data/ data ##
 ### ln -fs ~/Dropbox/academic/aphrc/hh_amen_xtics/cache/ cachestuff ##
-linkdir = ~/Dropbox/aphrc/hh_amen_xtics
-%.slink: $(linkdir)
-	@if [ -f $* ]; then echo ""; else ln -fs $</$* $* ; fi
 
-## Data folder
-### Why can't we use this as dependency in loadata.Rout?
-data: data.slink
+aphrc = $(shell ls -d ~/Dropbox/aphrc ~/Dropbox/*/aphrc | head -1)
+hhdir = $(aphrc)/hh_amen_xtics
+data: dir=$(hhdir)
+data:
+	$(linkdir)
+
+data/%:
+	$(MAKE) data
 
 ## cachestuff
-cachestuff: cachestuff.slink
+cachestuff: dir=$(hhdir)/cache
+cachestuff: 
+	$(linkdirname)
 
 ## Loading data
 loadatafun.Rout: loadatafun.R
-loadata.Rout: loadata.R loadatafun.rda data/NUHDSS_hhamenitiescharacteristics_anon.dta loadatafun.rda
+charfile = data/NUHDSS_hhamenitiescharacteristics_anon.dta
+loadata.Rout: loadata.R loadatafun.rda loadatafun.rda $(charfile)
 
 ## Filter data
 interview_filters.Rout: interview_filters.R
