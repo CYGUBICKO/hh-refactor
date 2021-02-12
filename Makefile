@@ -98,6 +98,20 @@ analysis_data.Rout: analysis_data.R variable_groups.rda complete_cases.rda
 descplotfuns.Rout: descplotfuns.R
 	$(wrapR)
 descriptive_stats.Rout: descriptive_stats.R ggtheme.rda descplotfuns.rda analysis_data.rda variable_groups.rda
+descriptive_stats_report.html: descriptive_stats_report.rmd ggtheme.rda variable_groups.rda descriptive_stats.rda generate_labels.Rout.xlsx
+	$(knithtml)
+
+######################################################################
+
+## PCA
+
+### Dwelling index
+dwelling_pca.Rout: dwelling_pca.R analysis_data.rda variable_groups.rda
+dwelling_pca_plot.Rout: dwelling_pca_plot.R ggtheme.rda dwelling_pca.rda
+
+### Ownership index
+ownership_here_pca.Rout: ownership_here_pca.R analysis_data.rda variable_groups.rda
+ownership_here_pca_plot.Rout: ownership_here_pca_plot.R ggtheme.rda ownership_here_pca.rda
 
 
 ######################################################################
@@ -123,4 +137,4 @@ makestuff/Makefile:
 
 -include makestuff/git.mk
 -include makestuff/visual.mk
-
+-include makestuff/pandoc.mk

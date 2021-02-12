@@ -12,6 +12,12 @@ commandEnvironments()
 ## Set ggplot theme
 ggtheme()
 
+#### ---- Data ----
+## No. of hh
+nhhid <- length(unique(working_df_complete$hhid))
+## No. of interviews
+nint_all <- nrow(working_df_complete)
+
 #### ---- Descriptives ----
 
 ## Interviews per year
@@ -19,6 +25,7 @@ desc_year_plot <- simplePlot(working_df_complete
 	, variable = "intvwyear_new"
 	, show_percent_labels = FALSE
 	, title = "Interview year"
+	, sort_x = FALSE
 )
 
 ## slumarea
@@ -196,6 +203,14 @@ desc_indiv_shocks_plots <- (ggplot(problems_df_long, aes(x = values))
 	+ coord_flip()
 )
 
+## Household food consumption
+desc_foodeaten_plot <- simplePlot(working_df_complete
+	, variable = "foodeaten30days_new"
+	, show_percent_labels = FALSE
+	, sort_x = FALSE
+	, title = "Food eaten by your household in the last 30 days."
+)
+
 ## Self rating
 working_df_complete$selfrating_new <- as.factor(working_df_complete$selfrating_new)
 desc_selfrating_plot <- simplePlot(working_df_complete
@@ -224,7 +239,21 @@ print(income_expend_shock_selfrate_plot)
 
 shocks_ever_plot <- desc_shocks_ever_plot + desc_shocks_ever_bin_plot
 print(shocks_ever_plot)
-#print(desc_indiv_expend_plots1)
-#print(desc_indiv_expend_plots2)
-#print(desc_indiv_shocks_plots)
+	
+saveVars(nhhid, nint_all
+	, desc_services_plot
+	, desc_numpeople_plot
+	, desc_year_plot
+	, desc_slumarea_plot
+	, desc_gender_plot
+	, desc_age_plot
+	, desc_dwelling_plot
+	, desc_ownership_plot
+	, desc_income_plot
+	, desc_expend_plot
+	, desc_foodeaten_plot
+	, desc_shocks_ever_plot
+	, desc_shocks_ever_bin_plot
+	, desc_selfrating_plot
+)
 
