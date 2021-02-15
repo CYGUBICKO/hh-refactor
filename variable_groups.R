@@ -8,7 +8,7 @@ all_vars <- colnames(working_df)
 
 ## Dwelling
 dwelling_group_vars <- c("floormaterial", "roofmaterial"
-	, "wallmaterial", "cookingfuel", "lighting", "rentorown"
+	, "wallmaterial", "cookingfuel", "lighting"
 )
 dwelling_group_vars <- paste0(dwelling_group_vars, "_new")
 

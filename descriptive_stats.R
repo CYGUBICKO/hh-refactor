@@ -220,6 +220,15 @@ desc_selfrating_plot <- simplePlot(working_df_complete
 	, title = "Self rating"
 )
 
+## Self rating
+working_df_complete$rentorown_new <- as.factor(working_df_complete$rentorown_new)
+desc_rentorown_plot <- simplePlot(working_df_complete
+	, variable = "rentorown_new"
+	, show_percent_labels = TRUE
+	, sort_x = FALSE
+	, title = "Type of ownership"
+)
+
 # All plots
 demographic_plots1 <- (desc_services_plot/desc_numpeople_plot)
 print(demographic_plots1)
@@ -255,5 +264,6 @@ saveVars(nhhid, nint_all
 	, desc_shocks_ever_plot
 	, desc_shocks_ever_bin_plot
 	, desc_selfrating_plot
+	, desc_rentorown_plot
 )
 

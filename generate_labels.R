@@ -127,7 +127,7 @@ oldpatterns <- c("^free of charge\\:|^other\\:|free of charge|^renting from\\:"
 	, "^owned"
 	, "^NIU|refused|^don|other$"
 )
-newlabs <- c("1", "2", NA)
+newlabs <- c("Not owned", "Owned", NA)
 
 rent_labs <- genLabels(df = working_df
 	, var = rent_vars

@@ -110,8 +110,50 @@ dwelling_pca.Rout: dwelling_pca.R analysis_data.rda variable_groups.rda
 dwelling_pca_plot.Rout: dwelling_pca_plot.R ggtheme.rda dwelling_pca.rda
 
 ### Ownership index
+
+#### Owned within the hh
 ownership_here_pca.Rout: ownership_here_pca.R analysis_data.rda variable_groups.rda
 ownership_here_pca_plot.Rout: ownership_here_pca_plot.R ggtheme.rda ownership_here_pca.rda
+
+#### Owned somewhere else
+ownership_else_pca.Rout: ownership_else_pca.R analysis_data.rda variable_groups.rda
+ownership_else_pca_plot.Rout: ownership_else_pca_plot.R ggtheme.rda ownership_else_pca.rda
+
+######################################################################
+
+## Select variables for wash analysis
+washdata.Rout: washdata.R dwelling_pca.rda ownership_here_pca.rda ownership_else_pca.rda analysis_data.rda
+
+## Lag wash data. Add immediate previous observational year as one of the predictors
+laggeddata.Rout: laggeddata.R washdata.rda
+laggeddata_plots.Rout: laggeddata_plots.R ggtheme.rda laggeddata.rda
+
+## Recategorise previous status variables (*P$)
+laggeddata_statusPcats.Rout: laggeddata_statusPcats.R laggeddata.rda
+
+######################################################################
+
+## Model data in a model frame with the selected predictors
+modeldata.Rout: modeldata.R laggeddata_statusPcats.rda
+
+## Model formula
+modelformula.Rout: modelformula.R
+
+######################################################################
+
+## Model fitting
+
+### Important functions
+#### Term names of anova object
+anovafuns.Rout: anovafuns.R
+	$(wrapR)
+
+### Water services
+#### Model
+waterP_tmb.Rout: waterP_tmb.R modelformula.rda modeldata.rda
+
+#### Anova
+waterP_tmb_anova.Rout: waterP_tmb_anova.R anovafuns.rda waterP_tmb.rda
 
 
 ######################################################################
