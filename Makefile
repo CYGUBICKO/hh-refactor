@@ -144,8 +144,16 @@ modelformula.Rout: modelformula.R
 ## Model fitting
 
 ### Important functions
-#### Term names of anova object
+#### parse term names of anova object
 anovafuns.Rout: anovafuns.R
+	$(wrapR)
+
+#### Label prediction plots
+predlabelsfuns.Rout: predlabelsfuns.R
+	$(wrapR)
+
+#### Plot effects sizes
+effectsizefuns.Rout: effectsizefuns.R
 	$(wrapR)
 
 ### Water services
@@ -154,6 +162,42 @@ waterP_tmb.Rout: waterP_tmb.R modelformula.rda modeldata.rda
 
 #### Anova
 waterP_tmb_anova.Rout: waterP_tmb_anova.R anovafuns.rda waterP_tmb.rda
+
+#### Variable effects
+waterP_tmb_varpred.Rout: waterP_tmb_varpred.R waterP_tmb.rda
+waterP_tmb_varpred_plots.Rout: waterP_tmb_varpred_plots.R predlabelsfuns.rda waterP_tmb_anova.rda waterP_tmb_varpred.rda
+
+### Garbage collection
+#### Model
+garbageP_tmb.Rout: garbageP_tmb.R modelformula.rda modeldata.rda
+
+#### Anova
+garbageP_tmb_anova.Rout: garbageP_tmb_anova.R anovafuns.rda garbageP_tmb.rda
+
+#### Variable effects
+garbageP_tmb_varpred.Rout: garbageP_tmb_varpred.R garbageP_tmb.rda
+garbageP_tmb_varpred_plots.Rout: garbageP_tmb_varpred_plots.R predlabelsfuns.rda garbageP_tmb_anova.rda garbageP_tmb_varpred.rda
+
+### Toilet facilities
+#### Model
+toiletP_tmb.Rout: toiletP_tmb.R modelformula.rda modeldata.rda
+
+#### Anova
+toiletP_tmb_anova.Rout: toiletP_tmb_anova.R anovafuns.rda toiletP_tmb.rda
+
+#### Variable effects
+toiletP_tmb_varpred.Rout: toiletP_tmb_varpred.R toiletP_tmb.rda
+toiletP_tmb_varpred_plots.Rout: toiletP_tmb_varpred_plots.R predlabelsfuns.rda toiletP_tmb_anova.rda toiletP_tmb_varpred.rda
+
+## Tidy Anova
+tidy_anovaP.Rout: tidy_anovaP.R waterP_tmb_anova.rda garbageP_tmb_anova.rda toiletP_tmb_anova.rda
+
+## Tidy coefficients
+tidy_coefP.Rout: tidy_coefP.R waterP_tmb.rda garbageP_tmb.rda toiletP_tmb.rda
+tidy_coefP_plots.Rout: tidy_coefP_plots.R ggtheme.rda effectsizefuns.rda tidy_anovaP.rda tidy_coefP.rda
+
+## Compare variable effects across the three services
+all_services_varpred_plots.Rout: all_services_varpred_plots.R ggtheme.rda waterP_tmb_varpred_plots.rda garbageP_tmb_varpred_plots.rda toiletP_tmb_varpred_plots.rda
 
 
 ######################################################################
