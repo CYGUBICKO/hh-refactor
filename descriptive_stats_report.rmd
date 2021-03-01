@@ -1,0 +1,273 @@
+---
+title: 'Report: Data preparation'
+author: "Steve and Jonathan"
+date: ' `r as.Date(Sys.time())` '
+output:
+  word_document: default
+  html_document:
+    fig_caption: yes
+---
+
+
+```{r setup, include=FALSE, cache=FALSE}
+knitr::opts_chunk$set(echo = FALSE
+	, warning = FALSE
+	, message = FALSE
+#	, fig.width = 10
+#	, fig.height = 10
+	, fig.align="center"
+	, results = "asis")
+options(width = 12)
+
+library(shellpipes)
+library(DT)
+library(dplyr)
+library(stringr)
+library(forcats)
+library(patchwork)
+library(ggplot2)
+library(scales)
+library(readxl)
+
+commandEnvironments()
+makeGraphics()
+
+ggtheme()
+
+```
+
+```{r load_otherfiles}
+labels_path <- fileSelect(exts="xlsx")
+labels_sheets <- excel_sheets(labels_path)
+labels_path_list <- lapply(excel_sheets(labels_path), read_excel, path = labels_path)
+names(labels_path_list) <- labels_sheets
+```
+
+
+### Number of observation
+
+- A total of `r nint_all` were done between $2006 - 2015$.
+- There are `r nhhid` households, interviewed in at least one of the interview years.
+- Complete cases for analysis are `r nint_all`, representing `r percent(miss_percase_df$Freq[miss_percase_df$Var1==0]/sum(miss_percase_df$Freq))` of all the cases ($2006 - 2015$).
+
+
+### Response variables
+
+- Response variables were categorized as `Improved` or `Unproved` based on the following criteria
+
+
+|                                     	| Improved                                                                                                                                                                                   	| Unimproved                                                                                                                                                                                                                                                                                  	|
+|-------------------------------------	|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	|
+| <br>Drinking water source           	| <br>Piped water into dwelling, plot or yard<br>Public tap/standpipe<br>Tube well / borehole<br>Protected dug well with hand pump<br>Protected spring<br>Rainwater collection from the roof 	| Unprotected dug well<br>Unprotected spring<br>Small water vendor (cart with small tank or drum)<br>Bottled water<br>Tanker truck<br>Rainwater collection from surface run off. Surface water (river, dam, lake, pond, stream, canal, irrigation channels)<br>Protected dug well with bucket 	|
+| Toilet facility type                	| Flush / pour flush to piped sewer system or septic tank or pit latrine<br>VIP latrine<br>Pit latrine with slab<br>Composting toilet                                                        	| Flush / pour flush to elsewhere e.g. to open drain<br>Pit latrine without slab (slab with holes) /open pit<br>Bucket<br>Hanging toilet / hanging latrine<br>No facilities or bush or field                                                                                                  	|
+| <br>Garbage disposal method<br><br> 	| Garbage dump<br>Private pits<br>Public pits<br>Proper garbage disposal services<br>Other organized groups such as the national youth service                                               	| In the river<br>On the road, railway line/station<br>In drainage/sewage/trench<br>Vacant/abandoned house/plot/field<br>No designated place/all over<br>Street boys/urchins<br>Burning<br>Other                                                                                              	|
+
+****
+
+\vspace*{2xm}
+
+```{r response_vars}
+print(desc_services_plot)
+```
+
+
+### Predictors
+
+**Demographics**
+
+- `age`
+
+```{r desc_age}
+print(desc_age_plot)
+```
+
+- `gender`
+
+```{r desc_gender}
+print(desc_gender_plot)
+```
+
+- `slumarea`
+
+```{r desc_slumarea}
+print(desc_slumarea_plot)
+```
+
+- `hhsize` 
+	
+	Number of household members (in this + other structure)
+
+```{r desc_hhsize}
+print(desc_numpeople_plot)
+```
+
+- `intvwyear`
+
+	The interview year. The baseline survey that defined the initial population for the NUHDSS was carried in `2002`. Subsequent interviews were conducted until 2015. As such, we exclude `2002 - 2005` interviews in our analysis because of larg proportion of missingness. 
+
+
+```{r desc_year}
+print(desc_year_plot)
+```
+**Dwelling index**
+	
+The following household amenities questions are used to compute dwelling index
+
+- **Main material of the floor**
+
+```{r floor_material}
+floor_labs <- (labels_path_list[["floor_labs"]]
+	%>% arrange(desc(floormaterial_new))
+)
+datatable(floor_labs, options = list(scrollX = '70%'))
+```
+
+- **Main material of the roof**
+
+```{r roof_material}
+roof_labs <- (labels_path_list[["roof_labs"]]
+	%>% arrange(desc(roofmaterial_new))
+)
+datatable(roof_labs, options = list(scrollX = '70%'))
+```
+
+- **Main material of the wall**
+
+```{r wall_material}
+wall_labs <- (labels_path_list[["wall_labs"]]
+	%>% arrange(desc(wallmaterial_new))
+)
+datatable(wall_labs, options = list(scrollX = '70%'))
+```
+
+- **Main source of cooking fuel**
+
+```{r cook_material}
+cook_labs <- (labels_path_list[["cook_labs"]]
+	%>% arrange(desc(cookingfuel_new))
+)
+datatable(cook_labs, options = list(scrollX = '70%'))
+```
+
+- **Main source of lightling**
+
+```{r light_material}
+light_labs <- (labels_path_list[["light_labs"]]
+	%>% arrange(desc(lighting_new))
+)
+datatable(light_labs, options = list(scrollX = '70%'))
+```
+
+**Dwelling index is derived from the first principal component score of PCA based on the new numerical categories created in the above tables**.
+
+
+```{r dwelling_index}
+print(desc_dwelling_plot)
+```
+
+
+**Place of dwelling ownership**
+
+```{r rent_material}
+rent_labs <- (labels_path_list[["rent_labs"]]
+	%>% arrange(desc(rentorown_new))
+)
+datatable(rent_labs, options = list(scrollX = '70%'))
+```
+
+```{r rent_material_plot}
+print(desc_rentorown_plot)
+```
+
+
+**Assets ownership index**
+
+- Assets information on whether the household owned any (yes/no), either the household or elsewhere, of the following household assets
+
+	|	<!-- -->			|	<!-- -->						|			<!---->					|<!----> 					|
+	|--------------	|------------------------	|--------------------------	|---------------------	|
+	| Vehicle      	| Sewing machine         	| Torch                    	|Livestock or poultry	|
+	| Motorcycle   	| Electric iron          	| Kerosene lamp with glass 	|Grow crops					|
+	| Bicycle      	| Fan                    	| Kerosene stove           	|								|
+	| Refrigerator 	| Telephone/mobile phone 	| wall clock               	|								|
+	| Television   	| Electric/gas stove     	| Mattress                 	|								|
+	| Radio/stereo 	| Sofa set               	| Blankets                 	|								|
+	| DVD/VCD/VCR  	| Table                  	| Bed                      	|								|
+	----------------------------------------------------------------------
+
+- Logistic PCA is performed and first PC scores are used as a proxy for assets ownership index.
+
+```{r ownership_index}
+print(desc_ownership_plot)
+```
+
+**Household income**
+
+- Estimated total income for the household in the last 30 days. The ranks (numeric categories) are used for the analysis.
+
+```{r inc30days_labs}
+inc30days_labs <- (labels_path_list[["inc30days_labs"]]
+	%>% arrange(desc(inc30days_total_new))
+)
+datatable(inc30days_labs, options = list(scrollX = '70%'))
+```
+
+```{r inc30days_plot}
+print(desc_income_plot)
+```
+
+**Total expenditure**
+
+- Amount (KES) spent on the following, in the last 7 days, constitutes household expenditure:
+	- Food
+	- Energy
+	- Water
+	- Rent
+
+- Total expenditure, sum of expenditure in the above categories is used for the analysis.
+
+```{r expend_plot}
+print(desc_expend_plot)
+```
+
+**Household food consumption**
+
+- How do you describe the food eaten by your household in the last 30 days?
+
+```{r foodeaten30days_labs}
+foodeaten30days_labs <- (labels_path_list[["foodeaten30days_labs"]]
+	%>% arrange(desc(foodeaten30days_new))
+)
+datatable(foodeaten30days_labs, options = list(scrollX = '70%'))
+```
+
+```{r foodeaten_plot}
+print(desc_foodeaten_plot)
+```
+
+
+**Shocks index**
+
+- Whether the household experienced any of the following shocks/problems in the last year (yes/no)?
+	
+	|	<!-- -->			|	<!-- -->						|			<!---->					|
+	|--------------	|------------------------	|--------------------------	|
+	| Fire	      	| Eviction		         	| Rape	                    	|
+	| Floods		   	| Demolition	          	| Stabbing						 	|
+	| Mugging      	| Severe illness          	| Lay-off			           	|
+	| Theft			 	| Death						 	|				               	|
+	----------------------------------------------------------------------
+	
+- The first option is to use the total shocks (simply count); option two is to convert total shocks to binary `(0 = never experienced any shocks, 1 = ever experienced at least one shock)`.
+
+```{r shocks_plot}
+print(desc_shocks_ever_plot + desc_shocks_ever_bin_plot)
+```
+
+**Household self rating**
+
+- On a scale of 1 (poorest) - 10 (richest), how does the household compare to others in the community.
+
+```{r selfrating_plot}
+print(desc_selfrating_plot)
+```
