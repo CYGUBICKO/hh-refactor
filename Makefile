@@ -32,6 +32,10 @@ ggtheme.Rout: ggtheme.R
 
 ######################################################################
 
+now: descriptive_stats_report.html dwelling_pca_plot.Rout ownership_here_pca_plot.Rout ownership_else_pca_plot.Rout tidy_coefP_plots.Rout all_services_varpred_plots.Rout
+
+######################################################################
+
 Ignore += data cachestuff
 ## Data symbolic links
 ### ln -fs ~/Dropbox/academic/aphrc/hh_amen_xtics/data/ data ##

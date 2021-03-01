@@ -1,7 +1,6 @@
 library(shellpipes)
 library(glmmTMB)
-library(jdeffects)
-jdtheme()
+library(vareffects)
 
 commandEnvironments()
 
