@@ -17,11 +17,11 @@ head(dwelling_df)
 
 dwelling_pca <- prcomp(dwelling_df, center = TRUE, scale. = TRUE)
 loadings <- dwelling_pca$rotation[, 1]
-#if(min(sign(loadings)) != max(sign(loadings))){
-#	stop("PC1 is not a positively signed index")
-#}
-#dwelling_index <- dwelling_pca$x[, 1]*max(sign(loadings))
-dwelling_index <- dwelling_pca$x[, 1]
+if(min(sign(loadings)) != max(sign(loadings))){
+	stop("PC1 is not a positively signed index")
+}
+dwelling_index <- dwelling_pca$x[, 1]*max(sign(loadings))
+#dwelling_index <- dwelling_pca$x[, 1]
 
 saveVars(dwelling_index
 	, dwelling_pca

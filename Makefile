@@ -110,12 +110,14 @@ descriptive_stats_report.html: descriptive_stats_report.rmd ggtheme.rda variable
 ## PCA
 
 ### Dwelling index
+#### Positively signed manually
 dwelling_pca.Rout: dwelling_pca.R analysis_data.rda variable_groups.rda
 dwelling_pca_plot.Rout: dwelling_pca_plot.R ggtheme.rda dwelling_pca.rda
 
 ### Ownership index
 
 #### Owned within the hh
+#### Positively signed manually
 ownership_here_pca.Rout: ownership_here_pca.R analysis_data.rda variable_groups.rda
 ownership_here_pca_plot.Rout: ownership_here_pca_plot.R ggtheme.rda ownership_here_pca.rda
 

@@ -19,7 +19,12 @@ ownership_here_df <- (working_df_complete
 head(ownership_here_df)
 
 ownership_here_pca <- prcomp(ownership_here_df, center = TRUE, scale. = TRUE)
-ownership_here_index <- ownership_here_pca$x[,1]
+loadings <- ownership_here_pca$rotation[, 1]
+if(min(sign(loadings)) != max(sign(loadings))){
+	stop("PC1 is not a positively signed index")
+}
+ownership_here_index <- ownership_here_pca$x[, 1]*max(sign(loadings))
+#ownership_here_index <- ownership_here_pca$x[,1]
 
 saveVars(ownership_here_pca
 	, ownership_here_index
