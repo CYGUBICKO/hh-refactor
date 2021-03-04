@@ -8,10 +8,13 @@ vim_session:
 
 ######################################################################
 
-Sources += $(wildcard *.R *.md. *.rmd)
+Sources += $(wildcard *.R *.md. *.rmd *.tex)
 autopipeR = defined
 
 Ignore += $(wildcard *.xlsx)
+
+######################################################################
+steve_macdata_proposal.pdf: steve_macdata_proposal.tex
 
 ######################################################################
 
@@ -229,4 +232,5 @@ makestuff/Makefile:
 
 -include makestuff/git.mk
 -include makestuff/visual.mk
+-include makestuff/texdeps.mk
 -include makestuff/pandoc.mk

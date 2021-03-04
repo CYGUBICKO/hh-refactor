@@ -1,0 +1,117 @@
+\section{Introduction}
+
+Many residents of urban areas face joint obstacles to basic service access, including social-economic, institutional, spatial and political barriers, and these are even more prevalent and severe in slum settlements \citep{pierce2017basic}. In Kenya, the Nairobi Urban Health and Demographic Surveillance System (NUHDSS) has collected data since 2003 on household-level access to WaSH services in two large slum areas \citep{beguy2015health}. The NUHDSS data provides a useful starting point for understanding the factors associated with trends in access to WaSH services in slum areas.
+
+In studying WaSH services, we have three variables (improved water, toilet facilities and garbage collection) characterizing our main outcome.  The most common approach to analyzing multiple outcomes is to analyze each outcome independently, in a univariate framework. This approach ignores the most likely unmeasured variations and correlation among the outcomes and the multivariate structure of the data. In addition, in situations where multiple binary outcomes are simultaneously observed in longitudinal (for example, at household level) data presents some modelling challenges, since the models should reflect that:
+\begin{enumerate}
+\item The outcomes for each household are likely to be correlated.
+\item The multiple outcomes reflect many of the same underlying processes.
+\item Outcome-specific effect sizes may be of interest.
+\end{enumerate}
+A naive attempt to overcome 1 and 2 would be combining outcome indicators into scores (representing an aggregated assessment of outcomes for each household), and then regressing the scores against the covariates. One major limitation of these approaches is that, by focussing on the aggregate, they fail to address 3, i.e., they lack the ability to identify which particular outcome is associated with the effect of interest. Structural equation models (SEMs) and explanatory SEMs are alternative approaches to addressing all the three that introduce latent variables to jointly model multiple outcomes \citep{dassimultaneous, fang2018joint, ivanova2016mixed, miro2004bayesian,lalonde2019disc}. However, latent variables approach generally involve strong statistical assumptions which may have a strong influence on the findings. \citet{lalonde2019disc} discusses some of the major drawbacks of using latent variable approaches to jointly model multiple outcome models.
+
+Individual modeling of each outcome -- with separate mixed logistic linear models being fitted for each outcome, would attempt to solve 3 at the expense of 1 and 2. Specifically, separate models will ignore the fact that the outcomes observed from the same subject (household) are likely to be correlated, since they are subject to shared influences that are distinctive to that particular household. In other words, fitting separate models to several related outcomes cannot address the question whether there is a global relation between the outcomes \citep{lalonde2019disc}. Ignoring such correlations may lead to poor estimates \citep{dassimultaneous, fang2018joint, ivanova2016mixed, miro2004bayesian, lalonde2019disc}.
+
+Joint modeling of multiple outcomes is sometimes preferable to separate models especially in longitudinal studies \citep{dassimultaneous,fang2018joint,lalonde2019disc}. There are a number of advantages to this approach. First, in spite of its simultaneous formulation, by correctly nesting the effect of interest (for example, a particular covariate) within the multiple outcomes, both outcome-specific and global effects can be estimated \citep{dassimultaneous,lalonde2019disc}. Second, association between outcomes can be captured in terms of correlation between household-level random effects \citep{ivanova2016mixed}. Third, joint modeling may increase statistical power \citep{dassimultaneous}.
+
+\section{Research goals}
+
+In this project we will adopt a joint modeling approach to analyse binary outcomes. Our approach will take into account the longitudinal nature of the data to simultaneously model all the three WaSH outcome variables (improved water, toilet facilities and garbage collection). Specifically, this project aims to investigate the contribution of demographic and economic factors to improved water, toilet facilities and garbage collection among the Nairobi urban poor using NUHDSS data.
+
+\section{Interdisciplinary nature}
+
+By formulation, joint modeling of WaSH indicators inherently requires interdisciplinary approach because of its intersection with several paradigms -- public health and global health, statistics and data science. In particular, the proposed approach is informed by the domain expertise, for example, on how the WaSH indicators could potentially correlate within households. Consequently, the perspective of this project is to incorporate this information with an aim of improving on various data retrieval, handling, visualization techniques and statistical methods while examining the contribution of demographic and economic factors to improved WaSH indicators.
+
+\section{Methodology}
+
+\subsection{Data acquisition}
+
+~
+
+This project with use existing data from a longitudinal NUHDSS covering two major urban slums in Nairobi, Kenya. The baseline survey that defined the initial population for the NUHDSS was carried out from July–August 2002. Subsequently, demographic, socio-economic, household characteristics  and livelihood sources data were yearly collected until the end of 2015. \citet{beguy2015health} gives a complete description of the NUHDSS study design and setting.
+
+\textbf{Outcomes}
+
+We will focus on three WaSH variables classified as improved or unimproved -- this follows WHO guidelines \citep{journal.pone.0151645}.
+
+\begin{table}[H]
+    \centering
+     \caption{Multiple outcomes categorization.}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{|l|l|l|}
+\hline
+ &
+  \textbf{Improved} &
+  \textbf{Unimproved} \\ \hline
+Drinking water source &
+  \begin{tabular}[c]{@{}l@{}}Piped water into dwelling, plot or yard\\ Public tap/standpipe\\ Tube well / borehole\\ Protected dug well with hand pump\\ Protected spring\\ Rainwater collection from the roof\end{tabular} &
+  \begin{tabular}[c]{@{}l@{}}Unprotected dug well\\ Unprotected spring\\ Small water vendor (cart with small tank or drum)\\ Bottled water\\ Tanker truck\\ Rainwater collection from surface run off. \\ Protected dug well with bucket\end{tabular} \\ \hline
+Toilet facility type &
+  \begin{tabular}[c]{@{}l@{}}Flush / pour flush to piped sewer system or septic tank or pit latrine\\ VIP latrine\\ Pit latrine with slab\\ Composting toilet\end{tabular} &
+  \begin{tabular}[c]{@{}l@{}}Flush / pour flush to elsewhere e.g. to open drain\\ Pit latrine without slab (slab with holes) /open pit\\ Bucket\\ Hanging toilet / hanging latrine\\ No facilities or bush or field\end{tabular} \\ \hline
+Garbage disposal method &
+  \begin{tabular}[c]{@{}l@{}}Garbage dump\\ Private pits\\ Public pits\\ Proper garbage disposal services\\ Other organized groups such as the national youth service\end{tabular} &
+  \begin{tabular}[c]{@{}l@{}}In the river\\ On the road, railway line/station\\ In drainage/sewage/trench\\ Vacant/abandoned house/plot/field\\ No designated place/all over\\ Street boys/urchins\\ Burning\\ Other\end{tabular} \\ \hline
+\end{tabular}
+}
+\end{table}
+
+
+\textbf{Covariates}
+
+Below are some of the covariates which will be included in our model:
+
+\begin{itemize}
+\item \textbf{Demographics}
+\begin{itemize}
+\item Age
+\item Gender
+\item Slum area (Korogocho and Viwandani)
+\item  Number of household members (in this + other structure)
+\item The interview year
+\end{itemize}
+\item \textbf{Dwelling index}
+
+Dwelling index will be derived from the first principal component score of the PCA based on dummy indicator variables generated from the following household amenities questions, i.e., main material of the
+\begin{itemize}
+\item floor
+\item roof
+\item wall
+\item fuel
+\item lightning
+\item ownership
+\end{itemize}
+\item \textbf{Assets ownership index}
+
+Assets information on whether the household owned any (yes/no), either at the household or elsewhere, will be used to perform logistic PCA to and then first PC scores used as a proxy for assets ownership index.
+\item \textbf{Household income}
+
+Estimated total income for the household in the last 30 days.
+\item \textbf{Total expenditure}
+
+Sum of amount (KES) spent on the following, in the last 7 days, constitutes household total expenditure.
+\item \textbf{Household food consumption}
+
+How do you describe the food eaten by your household in the last 30 days?
+\item \textbf{Shocks index}
+
+Whether the household experienced any of the following shocks/problems in the last year (yes/no)?
+
+\item \textbf{Household self rating}
+
+On a scale of 1 (poorest) - 10 (richest), how does the household compare to others in the community.
+
+\end{itemize}
+
+\subsection{Analysis plan}
+
+~
+
+We will fit a generalized mixed model (using both classical frequentist mixed-model and Bayesian frameworks), i.e., joint hierarchical logistic regression model with shared random effects that accounts for the correlation due to households and years. Specifically, the shared random intercept will account for the correlation between the three outcomes of the same household in a particular year, and captures the unobserved factors specific to each household (in a particular year) that may influence the three services.
+
+In order to explore and understand the two fitting approaches, we will perform simulation-based validation.  The main idea is to validate the proposed model and redefine the it, if necessary using simulated data.
+
+\section{Significance}
+
+While WaSH services constitute some of the most basic requirements for human health and dignity throughout the world, this dignity is missing in most of the slum areas of Nairobi. Even though there have been a number of interventions intended to upgrade Nairobi's slum areas, focusing on issues of infrastructure development, especially in the Korogocho and Viwandani slums, the communities remain exposed to overcrowding and poverty, alcohol and substance abuse, domestic violence and crime. In addition to widespread poverty, residents of Nairobi's Viwandani and Korogocho slum areas are also faced by the near-absence of most of the basic services they need to live healthy lives. It is also important to note that Kenya has experienced unprecedented urban growth, which is expected to lead to the country's urban population reaching about 31.7 million (56\%) by 2027. This rapid urbanization has left Kenyan cities with a huge unmet demand for critical infrastructure and basic services, adversely affecting the quality of life for urban residents, with nearly two-thirds of urban residents having no access to improved sanitation \citep{chikozho2019leaving}. The result from this study will provide an overview to the extent to which residents of Nairobi's slum areas of Viwandani and Korogocho have been able to access and the status of WaSH services. In addition, the result is intended to inform the agenda of policymakers and public health practitioners who grapple continuously with the challenges faced in accessing WaSH services in Nairobi's low-income residential areas. It will also directly contributes to the growing body of knowledge on access to improved WaSH services in the context of slum areas in low and middle-income countries.
+

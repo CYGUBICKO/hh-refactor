@@ -1,0 +1,165 @@
+%-----------------------------------------------------------------------------
+% Template for AIMS Structured Masters Research Project
+
+\documentclass{aimsessay}
+% \usepackage{etex} % fix for using xy and tikz in the same document
+\usepackage[utf8]{inputenc}
+\usepackage[round]{natbib}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{latexsym}
+\usepackage{parskip}
+\usepackage{enumerate}
+%\usepackage{tikz}
+\usepackage{graphicx,grffile}
+
+%Added packages
+\usepackage{booktabs}
+\usepackage{bm}
+\usepackage{multicol}
+\usepackage{pgf,tikz}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\usepackage{lineno}
+
+%-----------------------------------------------------------------------------
+% To use external packages for specific needs, 
+% get approval before adding them here (they
+% should not override general AIMS house style and layout).
+%
+% Examples:
+% 
+% Load caption before arabtex
+\usepackage{caption} %many figures in one figure (note subfigure and subfig are deprecated) 
+\usepackage{subcaption} %many figures in one figure (note subfigure 
+\usepackage{booktabs} % \toprule, \midrule, \bottomrule
+\usepackage{array}    % \newcolumntype
+% 
+% For figures:
+\usepackage[below,section]{placeins} % use \FloatBarrier in the body to really force a float somewhere. Please limit use.
+\usepackage{float}  %"H" placement spec, for **really here** (i.e. not float)
+%
+% For code and algorithms
+\usepackage{moreverb}   % \verbatimtabinput
+% \usepackage{listings} % more flexible and complicated 
+
+\swapnumbers 
+% 
+% Theorems are in italics.
+\theoremstyle{plain}
+\newtheorem{thm}[subsection]{Theorem}
+%
+% Rest is not in italics.
+\theoremstyle{definition} 
+\newtheorem{lem}[subsection]{Lemma}
+\newtheorem{cor}[subsection]{Corollary}
+\newtheorem{conj}[subsection]{Conjecture}
+\newtheorem{pro}[subsection]{Proposition}
+\newtheorem{exa}[subsection]{Example}
+\newtheorem{dfn}[subsection]{Definition}
+\newtheorem{rem}[subsection]{Remark}
+\newtheorem{nt}[subsection]{Notation}
+
+
+
+%-------------------------------------------------------------------------
+\begin{document}
+%\selectlanguage{english}
+%\pagestyle{empty}
+\begin{titlepage}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+
+\center % Center everything on the page
+
+%----------------------------------------------------------------------------------------
+%	HEADING SECTIONS
+%----------------------------------------------------------------------------------------
+
+\LARGE McMaster University\\[1.5cm] % Name of your university/college
+\Large MacDATA FELLOWSHIP PROPOSAL\\[0.5cm] % Major heading such as course name
+%\textsc{\large }\\[0.5cm] % Minor heading such as course title
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\HRule \\[0.4cm]
+{ \Huge \bfseries A multivariate multilevel analysis for binary outcomes: correlates of sanitary improvements in the slums of Nairobi}\\[0.4cm] % Title of your document
+\HRule \\[1.5cm]
+
+
+%----------------------------------------------------------------------------------------
+%	AUTHOR SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{minipage}{0.3\textwidth}
+\begin{flushleft} \large
+\emph{Student:}\\
+Steve Cygu\\
+\emph{Student number}: 400164479 % Your name
+\end{flushleft}
+\end{minipage}
+~
+\begin{minipage}{0.6\textwidth}
+\begin{flushright} \large
+\emph{Supervisory committee members:} \\
+Prof. Jonathan Dushoff\\ % Supervisor's Name
+Prof. Ben Bolker\\
+Prof. James Reilly\\
+Dr. Seow Hsien\\
+Prof. Paul McNicholas
+\end{flushright}
+\end{minipage}\\[2cm]
+
+% If you don't want a supervisor, uncomment the two lines below and remove the section above
+%\Large \emph{Author:}\\
+%John \textsc{Smith}\\[3cm] % Your name
+
+%----------------------------------------------------------------------------------------
+%	DATE SECTION
+%----------------------------------------------------------------------------------------
+
+{\large \today}\\[2cm] % Date, change the \today to a set date if you want to be precise
+
+%----------------------------------------------------------------------------------------
+%	LOGO SECTION
+%----------------------------------------------------------------------------------------
+
+\includegraphics{McMasterfull_colour.jpg}\\[1cm] % Include a department/university logo - this will require the graphicx package
+
+
+
+\end{titlepage}
+
+%\maketitle
+
+%\pagenumbering{roman}
+%\tableofcontents
+%\newpage
+
+\pagenumbering{arabic}
+\pagestyle{myheadings}
+
+
+\input{macdata_chapter1}
+
+\newpage
+\input{macdata_chapter2}
+
+\newpage
+\input{macdata_chapter3}
+
+\newpage
+\renewcommand{\bibname}{References}
+\nocite{*}
+\bibliographystyle{abbrvnat}
+\bibliography{steve_macdata_proposal.bib}
+\addcontentsline{toc}{section}{References}
+
+
+
+%-----------------------------------------------------------------------------
+\end{document}
