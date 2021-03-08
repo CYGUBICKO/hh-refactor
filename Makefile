@@ -211,6 +211,24 @@ all_services_varpred_plots.Rout: all_services_varpred_plots.R ggtheme.rda waterP
 
 ######################################################################
 
+#### Joint model
+
+## long wash data. Use BMB trick to prepare data for GLMs
+longdata.Rout: longdata.R washdata.rda
+longlaggeddata.Rout: longlaggeddata.R longdata.rda
+
+
+## Model data in a model frame with the selected predictors
+modeldata_joint.Rout: modeldata_joint.R longlaggeddata.rda 
+
+## Model formula
+modelformula_joint.Rout: modelformula_joint.R
+
+### Water services
+#### Model
+jointmodelP_tmb.Rout: jointmodelP_tmb.R modelformula_joint.rda modeldata_joint.rda
+
+######################################################################
 ### Makestuff
 
 Sources += Makefile notes.md
