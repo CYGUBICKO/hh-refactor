@@ -5,6 +5,7 @@ commandEnvironments()
 model_df <- model.frame(
 	~ status
 	+ statusP
+	+ services
 	+ age
 	+ age_scaled
 	+ hhsize
