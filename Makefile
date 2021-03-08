@@ -224,7 +224,9 @@ modeldata_joint.Rout: modeldata_joint.R longlaggeddata.rda
 ## Model formula
 modelformula_joint.Rout: modelformula_joint.R
 
-### Water services
+######################################################################
+
+## Model fitting
 #### Model
 jointmodelP_tmb.Rout: jointmodelP_tmb.R modelformula_joint.rda modeldata_joint.rda
 
