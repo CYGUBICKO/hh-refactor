@@ -12,6 +12,7 @@ model_df <- model.frame(
 	+ log_hhsize
 	+ hhsize_scaled
 	+ year
+	+ f_year
 	+ year_scaled
 	+ gender
 	+ slumarea
@@ -28,6 +29,7 @@ model_df <- model.frame(
 	+ foodeaten
 	+ rentorown
 	+ hhid
+	+ intid
 	, data = lagged_df, na.action = na.exclude, drop.unused.levels = TRUE
 )
 head(model_df)

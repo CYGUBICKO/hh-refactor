@@ -49,11 +49,16 @@ wash_df <- (wash_df
 		, selfrating_scaled = drop(scale(selfrating))
 		, shocks_scaled = drop(scale(shocks))
 		, expenditure_scaled = drop(scale(expenditure))
+		, intid = 1:nrow(.)
 	)
 	%>% mutate_at(c("watersource", "toilettype", "garbagedposal"), function(x){
 		as.numeric(ifelse(x=="Improved", 1, ifelse(x=="Unimproved", 0, x)))
 	})
 )
+
+##
+nrow(wash_df)
+max(wash_df$intid)
 
 ## Confirm tallies with above
 sapply(wash_df[,c("watersource", "toilettype", "garbagedposal")], table)

@@ -230,6 +230,9 @@ modelformula_joint.Rout: modelformula_joint.R
 #### Model
 jointmodelP_tmb.Rout: jointmodelP_tmb.R modelformula_joint.rda modeldata_joint.rda
 
+## Variable effects
+jointmodelP_tmb_varpred.Rout: jointmodelP_tmb_varpred.R jointmodelP_tmb.rda
+
 ######################################################################
 ### Makestuff
 

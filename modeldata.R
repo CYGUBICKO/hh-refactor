@@ -31,6 +31,7 @@ model_df <- model.frame(
 	+ foodeaten
 	+ rentorown
 	+ hhid
+	+ intid
 	, data = lagged_df, na.action = na.exclude, drop.unused.levels = TRUE
 )
 head(model_df)

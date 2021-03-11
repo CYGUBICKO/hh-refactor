@@ -30,7 +30,10 @@ prevdat <- (long_df
 lagged_df <- (long_df
 	%>% left_join(prevdat, by = c("hhid", "year", "services"))
 	%>% group_by(hhid)
-	%>% mutate(statusP = ifelse(year==min(year), "Base year", statusP))
+	%>% mutate(statusP = ifelse(year==min(year), "Base year", statusP)
+		, f_year = as.factor(year)
+		, hhid = as.factor(hhid)
+	)
 	%>% ungroup()
 	%>% mutate_at("statusP", statusPfunc)
 	%>% data.frame()
@@ -41,8 +44,8 @@ dim(lagged_df)
 
 ## Check 
 check_df <- (lagged_df
-	%>% select(!!c("hhid", "year", "services", "status", "statusP"))
-	%>% mutate(hhid=as.numeric(as.factor(hhid)))
+	%>% select(!!c("hhid", "intid", "year", "services", "status", "statusP"))
+	%>% mutate(hhid = as.numeric(hhid))
 	%>% head(n=50)
 )
 print(check_df)

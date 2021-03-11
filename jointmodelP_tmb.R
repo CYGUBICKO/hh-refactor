@@ -6,6 +6,7 @@ commandEnvironments()
 ## Fit glmtmb model
 jointmodelP_tmb <- glmmTMB(model_form_joint
 	, data = model_df
+	, contrasts = list(services="contr.sum")
 	, family = binomial(link = "logit")
 )
 summary(jointmodelP_tmb)
