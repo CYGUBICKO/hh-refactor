@@ -29,11 +29,11 @@ Multivariate modeling of WaSH indicators is an inherently interdisciplinary ques
 
 We will use existing data from a longitudinal NUHDSS covering two major urban slums in Nairobi, Kenya. The baseline survey that defined the initial population for the NUHDSS was carried out from July–August 2002. Subsequently, demographic, socio-economic, household characteristics  and livelihood sources data were collected yearly until the end of 2015. \citet{beguy2015health} gives a complete description of the NUHDSS study design and setting.
 
-\textbf{Outcomes}
+\subsubsection*{Outcomes}
 
 We will focus on three WaSH variables: Drinking water source; Toilet facility type; and Garbage disposal method. Each of these is classified as improved or unimproved -- this follows WHO guidelines \citep{journal.pone.0151645}.
 
-\textbf{Covariates}
+\subsubsection*{Covariates}
 
 Below are some of the covariates which will be included in our model:
 
@@ -60,9 +60,9 @@ Below are some of the covariates which will be included in our model:
 
 \subsection*{Analysis plan}
 
-We will fit a generalized mixed model (using both classical frequentist mixed-model and Bayesian frameworks), i.e., joint hierarchical logistic regression model with shared random effects that accounts for the correlation due to households and years. Specifically, the shared random intercept will account for the correlation between the three outcomes of the same household in a particular year, and captures the unobserved factors specific to each household (in a particular year) that may influence the three services.
+We will fit a generalized mixed model (using both classical frequentist mixed-model and Bayesian frameworks), i.e., joint hierarchical logistic regression model with shared random effects that accounts for the correlation due to households and years. Specifically, the correlated random intercepts will account for the correlation between the three outcomes of the same household in a particular year, and capture the unobserved factors specific to each household (in a particular year) that may influence the three services.
 
-In order to explore and understand the two fitting approaches, we will perform simulation-based validation.  The main idea is to validate the proposed model and redefine the it, if necessary using simulated data.
+In order to explore and understand the two fitting approaches, we will perform simulation-based validation.  The main idea is to use simulations that match our assumptions to validate and refine the proposed models before applying them to the real data set.
 
 \section*{Significance}
 
