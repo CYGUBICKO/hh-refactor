@@ -23,9 +23,11 @@ steve_macdata_proposal.tex.pdf: steve_macdata_proposal.tex
 macdata_contacts.pdf: macdata_contacts.tex
 macdata_distinction.pdf: macdata_distinction.tex
 
+steve_cv.pdf: steve_cv.tex
+
 %: %.tex ;
 
-macdata_submission.pdf: steve_macdata_proposal.pdf macdata_distinction.pdf
+macdata_submission.pdf: steve_macdata_proposal.pdf macdata_distinction.pdf steve_cv.pdf
 	$(pdfcat)
 
 ######################################################################

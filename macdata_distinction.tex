@@ -1,11 +1,18 @@
-
 \documentclass[12pt]{article}
+\usepackage[margin=3cm]{geometry}
 
+% \usepackage{etex} % fix for using xy and tikz in the same document
+\usepackage[utf8]{inputenc}
+\usepackage{parskip}
+\usepackage{enumerate}
+\usepackage{hyperref}
+
+\begin{document}
 \section*{Distinction between MacDATA proposal and PhD project}
 
-Many techniques from statistical methods (SM) and machine learning (ML) may, in principle, be used for both perspectives. However, SM has a well established focus on inference by building probabilistic models which allows us to determine a quantitative measure of confidence about the clarity of the true effect. Simulation-based validation approaches can be used in conjunction with SM to explicitly verify assumptions and redefine the specified model, if necessary. On the other hand, ML uses general-purpose algorithms to find patterns that best predict the outcome and makes minimal assumptions about the data-generating process; and may be more effective in a number of situations \citep{bzdok2018points}. However, despite convincing predictive performance and flexibility, the lack of explicit models in most ML methods can make ML results difficult to directly link to prior public health knowledge.
+Many techniques from statistical methods (SM) and machine learning (ML) may, in principle, be used for both perspectives. However, SM has a well established focus on inference by building probabilistic models which allows us to determine a quantitative measure of confidence about the clarity of the true effect. Simulation-based validation approaches can be used in conjunction with SM to explicitly verify assumptions and redefine the specified model, if necessary. On the other hand, ML uses general-purpose algorithms to find patterns that best predict the outcome and makes minimal assumptions about the data-generating process; and may be more effective in a number of situations. However, despite convincing predictive performance and flexibility, the lack of explicit models in most ML methods can make ML results difficult to directly link to prior public health knowledge.
 
-Owing to the differing strengths of the two approaches, we propose two computational approaches for investigating particular public health. In particular:
+Owing to the differing strengths of the two approaches, the candidate's PhD thesis and this project utilizes two differing computational approaches to address public health questions. In particular:
 
 \begin{itemize}
 \item Aims and scope of PhD thesis
@@ -19,3 +26,4 @@ Owing to the differing strengths of the two approaches, we propose two computati
 \end{itemize}
 The first case focuses on ML-based cross-validation to evaluate predictive models for maximized predictive performance on unobserved outcomes. In the second case we propose statistical modeling together with simulation-based validation approaches to majorly focus on causal inference of model parameters.
 
+\end{document}

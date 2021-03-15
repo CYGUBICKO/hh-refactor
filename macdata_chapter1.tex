@@ -46,42 +46,19 @@ Below are some of the covariates which will be included in our model:
 \item  Number of household members (in this + other structure)
 \item The interview year
 \end{itemize}
-\item \textbf{Dwelling index}
-
-Dwelling index will be derived from the first principal component score of the PCA based on dummy indicator variables generated from the following household amenities questions, i.e., main material of the
+\item \textbf{Socio-economic}
 \begin{itemize}
-\item floor
-\item roof
-\item wall
-\item fuel
-\item lighting
-\item ownership
+\item Dwelling index
+\item Assets ownership index
+\item Household income
+\item Total expenditure
+\item Household food consumption
+\item Shocks index
+\item Household self rating
 \end{itemize}
-\item \textbf{Assets ownership index}
-
-Assets information on whether the household owned any (yes/no), either at the household or elsewhere, will be used to perform logistic PCA to and then first PC scores used as a proxy for assets ownership index.
-\item \textbf{Household income}
-
-Estimated total income for the household in the last 30 days.
-\item \textbf{Total expenditure}
-
-Sum of amount (KES) spent on the following, in the last 7 days, constitutes household total expenditure.
-\item \textbf{Household food consumption}
-
-How do you describe the food eaten by your household in the last 30 days?
-\item \textbf{Shocks index}
-
-Whether the household experienced any of the following shocks/problems in the last year (yes/no)?
-
-\item \textbf{Household self rating}
-
-On a scale of 1 (poorest) - 10 (richest), how does the household compare to others in the community.
-
 \end{itemize}
 
 \subsection*{Analysis plan}
-
-~
 
 We will fit a generalized mixed model (using both classical frequentist mixed-model and Bayesian frameworks), i.e., joint hierarchical logistic regression model with shared random effects that accounts for the correlation due to households and years. Specifically, the shared random intercept will account for the correlation between the three outcomes of the same household in a particular year, and captures the unobserved factors specific to each household (in a particular year) that may influence the three services.
 
