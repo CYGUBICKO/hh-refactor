@@ -6,7 +6,7 @@
 # 4. show_percent_labels: Whether to show percentages on the bar graphs
 # 5. shift_axis: Whether to rotate the axis
 
-simplePlot <- function(df, variable, wrap_labels = 1, xlabel = "", show_percent_labels = TRUE, shift_axis = FALSE, sort_x = TRUE, title = ""){
+simplePlot <- function(df, variable, wrap_labels = 1, xlabel = "", bins=NULL, show_percent_labels = TRUE, shift_axis = FALSE, sort_x = TRUE, title = ""){
 	df <- (df
 		%>% rename(temp_var = !!variable)
 	)
@@ -29,7 +29,7 @@ simplePlot <- function(df, variable, wrap_labels = 1, xlabel = "", show_percent_
 	)
 	if (class(df$temp_var)=="numeric"|class(df$temp_var)=="interger"){
 		p0 <- (ggplot(df, aes(x = as.numeric(temp_var)))
-			+ geom_histogram()
+			+ geom_histogram(bins=bins)
 #			+ xlim(limits = range(df$temp_var, na.rm = TRUE))
 		)
 	}

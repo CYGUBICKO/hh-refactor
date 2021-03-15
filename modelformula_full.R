@@ -51,7 +51,7 @@ fixed_effects <- paste0(c("-1"
 
 ## Random effects
 # rand_effects <- "(services-1|hhid)" #+ "(services-1|intid) + (services-1|year)"
-rand_effects <- "(services-1|hhid)"
+rand_effects <- "(services-1|hhid) + (services-1|year)"
 model_form_joint <- as.formula(paste0("status ~ ", fixed_effects, "+", rand_effects))
 print(model_form_joint)
 

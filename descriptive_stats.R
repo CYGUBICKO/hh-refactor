@@ -43,11 +43,13 @@ desc_gender_plot <- simplePlot(working_df_complete
 )
 
 ## Age
+working_df_complete$ageyears_new <- as.factor(working_df_complete$ageyears_new)
 desc_age_plot <- simplePlot(working_df_complete
 	, variable = "ageyears_new"
+	, sort_x = FALSE
 	, show_percent_labels = FALSE
 	, title = "Age"
-)
+) + coord_flip()
 
 ## Number of people
 desc_numpeople_plot <- simplePlot(working_df_complete

@@ -16,7 +16,7 @@ print(jointmodelP_pred_vars)
 ## Compute predictions
 
 jointmodelP_varpred_df <- sapply(jointmodelP_pred_vars, function(x){
-	pred <- varpred(mod, c("services", x), x.var = x, isolate=TRUE, vcov.=zero_vcov(mod, x))
+	pred <- varpred(mod, c("services", x), x.var = x, type="response", isolate=TRUE, internal=TRUE)
 	print(plot(pred, facet_scales="free", facet_ncol=2))
 #	return(pred)
 }, simplify=FALSE)

@@ -33,7 +33,7 @@ library(shellpipes)
 ## Fixed effects
 fixed_effects <- paste0(c("age_scaled"
 		, "log_hhsize"
-		, "year"
+		, "year_scaled"
 		, "gender"
 		, "slumarea"
 		, "selfrating_scaled"
@@ -42,7 +42,7 @@ fixed_effects <- paste0(c("age_scaled"
 		, "ownhere"
 		, "ownelse"
 		, "expenditure_scaled"
-		, "income"
+		, "income_scaled"
 		, "foodeaten"
 		, "rentorown"
 	)

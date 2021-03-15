@@ -33,6 +33,7 @@ lagged_df <- (long_df
 	%>% mutate(statusP = ifelse(year==min(year), "Base year", statusP)
 		, f_year = as.factor(year)
 		, hhid = as.factor(hhid)
+		, services = as.factor(services)
 	)
 	%>% ungroup()
 	%>% mutate_at("statusP", statusPfunc)

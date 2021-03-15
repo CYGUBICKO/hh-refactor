@@ -49,6 +49,7 @@ wash_df <- (wash_df
 		, selfrating_scaled = drop(scale(selfrating))
 		, shocks_scaled = drop(scale(shocks))
 		, expenditure_scaled = drop(scale(expenditure))
+		, income_scaled = drop(scale(income))
 		, intid = 1:nrow(.)
 	)
 	%>% mutate_at(c("watersource", "toilettype", "garbagedposal"), function(x){

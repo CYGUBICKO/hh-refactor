@@ -26,6 +26,7 @@ model_df <- model.frame(
 	+ expenditure
 	+ expenditure_scaled
 	+ income
+	+ income_scaled
 	+ foodeaten
 	+ rentorown
 	+ hhid

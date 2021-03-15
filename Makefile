@@ -223,12 +223,17 @@ modeldata_joint.Rout: modeldata_joint.R longlaggeddata.rda
 
 ## Model formula
 modelformula_joint.Rout: modelformula_joint.R
+### All random effects
+modelformula_full.Rout: modelformula_full.R
 
 ######################################################################
 
 ## Model fitting
-#### Model
+#### TMB
 jointmodelP_tmb.Rout: jointmodelP_tmb.R modelformula_joint.rda modeldata_joint.rda
+
+#### glmer
+jointmodelP_glmer.Rout: jointmodelP_glmer.R modelformula_full.rda modeldata_joint.rda
 
 ## Variable effects
 jointmodelP_tmb_varpred.Rout: jointmodelP_tmb_varpred.R jointmodelP_tmb.rda

@@ -9,8 +9,8 @@ jointmodelP_tmb <- glmmTMB(model_form_joint
 	, contrasts = list(services="contr.sum")
 	, family = binomial(link = "logit")
 )
+warnings()
 summary(jointmodelP_tmb)
-
 saveVars(jointmodelP_tmb
 	, model_df
 	, model_form_joint
