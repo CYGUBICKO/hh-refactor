@@ -1,7 +1,6 @@
-%-----------------------------------------------------------------------------
-% Template for AIMS Structured Masters Research Project
-
 \documentclass[12pt]{article}
+\usepackage[margin=3cm]{geometry}
+
 % \usepackage{etex} % fix for using xy and tikz in the same document
 \usepackage[utf8]{inputenc}
 \usepackage[round]{natbib}
@@ -25,19 +24,6 @@
 \usetikzlibrary{arrows}
 \usepackage{lineno}
 
-%-----------------------------------------------------------------------------
-% To use external packages for specific needs, 
-% get approval before adding them here (they
-% should not override general AIMS house style and layout).
-%
-% Examples:
-% 
-% Load caption before arabtex
-\usepackage{caption} %many figures in one figure (note subfigure and subfig are deprecated) 
-\usepackage{subcaption} %many figures in one figure (note subfigure 
-\usepackage{booktabs} % \toprule, \midrule, \bottomrule
-\usepackage{array}    % \newcolumntype
-% 
 % For figures:
 \usepackage[below,section]{placeins} % use \FloatBarrier in the body to really force a float somewhere. Please limit use.
 \usepackage{float}  %"H" placement spec, for **really here** (i.e. not float)
@@ -79,7 +65,7 @@
 %	HEADING SECTIONS
 %----------------------------------------------------------------------------------------
 
-\LARGE McMaster University\\[1.5cm] % Name of your university/college
+%% \LARGE McMaster University\\[1.5cm] % Name of your university/college
 \Large MacDATA FELLOWSHIP PROPOSAL\\[0.5cm] % Major heading such as course name
 %\textsc{\large }\\[0.5cm] % Minor heading such as course title
 
@@ -125,7 +111,7 @@ Prof. Paul McNicholas
 %	LOGO SECTION
 %----------------------------------------------------------------------------------------
 
-\includegraphics{McMasterfull_colour.jpg}\\[1cm] % Include a department/university logo - this will require the graphicx package
+%% \includegraphics{McMasterfull_colour.jpg}\\[1cm] % Include a department/university logo - this will require the graphicx package
 
 \end{titlepage}
 
@@ -140,13 +126,12 @@ Prof. Paul McNicholas
 
 \newcommand{\jd}[1]{[[\textbf{JD: #1}]]}
 
+%% 
 \input{macdata_chapter1.tex}
 
-\newpage
-\input{macdata_chapter2.tex}
+%% \newpage \input{macdata_chapter2.tex}
 
-\newpage
-\input{macdata_chapter3.tex}
+%% \newpage \input{macdata_chapter3.tex}
 
 \newpage
 \renewcommand{\bibname}{References}

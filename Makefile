@@ -20,7 +20,13 @@ Sources += $(wildcard *.cls)
 steve_macdata_proposal.pdf: steve_macdata_proposal.tex
 steve_macdata_proposal.tex.pdf: steve_macdata_proposal.tex
 
+macdata_contacts.pdf: macdata_contacts.tex
+macdata_distinction.pdf: macdata_distinction.tex
+
 %: %.tex ;
+
+macdata_submission.pdf: steve_macdata_proposal.pdf macdata_distinction.pdf
+	$(pdfcat)
 
 ######################################################################
 
