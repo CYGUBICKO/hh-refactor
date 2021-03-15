@@ -8,7 +8,7 @@ vim_session:
 
 ######################################################################
 
-Sources += $(wildcard *.R *.md. *.rmd *.tex *.bib)
+Sources += $(wildcard *.R *.md. *.rmd *.tex *.bib *.cls)
 autopipeR = defined
 
 Ignore += $(wildcard *.xlsx)
