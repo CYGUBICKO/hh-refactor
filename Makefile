@@ -14,7 +14,13 @@ autopipeR = defined
 Ignore += $(wildcard *.xlsx)
 
 ######################################################################
+
+Sources += $(wildcard *.cls)
+
 steve_macdata_proposal.pdf: steve_macdata_proposal.tex
+steve_macdata_proposal.tex.pdf: steve_macdata_proposal.tex
+
+%: %.tex ;
 
 ######################################################################
 
@@ -260,5 +266,5 @@ makestuff/Makefile:
 
 -include makestuff/git.mk
 -include makestuff/visual.mk
--include makestuff/texdeps.mk
+-include makestuff/texi.mk
 -include makestuff/pandoc.mk
