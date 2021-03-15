@@ -1,7 +1,7 @@
 %-----------------------------------------------------------------------------
 % Template for AIMS Structured Masters Research Project
 
-\documentclass{aimsessay}
+\documentclass[12pt]{article}
 % \usepackage{etex} % fix for using xy and tikz in the same document
 \usepackage[utf8]{inputenc}
 \usepackage[round]{natbib}
@@ -48,11 +48,11 @@
 \swapnumbers 
 % 
 % Theorems are in italics.
-\theoremstyle{plain}
+%% \theoremstyle{plain}
 \newtheorem{thm}[subsection]{Theorem}
 %
 % Rest is not in italics.
-\theoremstyle{definition} 
+%% \theoremstyle{definition} 
 \newtheorem{lem}[subsection]{Lemma}
 \newtheorem{cor}[subsection]{Corollary}
 \newtheorem{conj}[subsection]{Conjecture}
@@ -114,10 +114,6 @@ Prof. Paul McNicholas
 \end{flushright}
 \end{minipage}\\[2cm]
 
-% If you don't want a supervisor, uncomment the two lines below and remove the section above
-%\Large \emph{Author:}\\
-%John \textsc{Smith}\\[3cm] % Your name
-
 %----------------------------------------------------------------------------------------
 %	DATE SECTION
 %----------------------------------------------------------------------------------------
@@ -130,8 +126,6 @@ Prof. Paul McNicholas
 
 \includegraphics{McMasterfull_colour.jpg}\\[1cm] % Include a department/university logo - this will require the graphicx package
 
-
-
 \end{titlepage}
 
 %\maketitle
@@ -143,14 +137,15 @@ Prof. Paul McNicholas
 \pagenumbering{arabic}
 \pagestyle{myheadings}
 
+\newcommand{\jd}[1]{[[\textbf{JD: #1}]]}
 
-\input{macdata_chapter1}
-
-\newpage
-\input{macdata_chapter2}
+\input{macdata_chapter1.tex}
 
 \newpage
-\input{macdata_chapter3}
+\input{macdata_chapter2.tex}
+
+\newpage
+\input{macdata_chapter3.tex}
 
 \newpage
 \renewcommand{\bibname}{References}
@@ -158,8 +153,6 @@ Prof. Paul McNicholas
 \bibliographystyle{abbrvnat}
 \bibliography{steve_macdata_proposal.bib}
 \addcontentsline{toc}{section}{References}
-
-
 
 %-----------------------------------------------------------------------------
 \end{document}

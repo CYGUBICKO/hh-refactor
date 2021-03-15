@@ -1,8 +1,13 @@
 \section{Introduction}
 
-Many residents of urban areas face joint obstacles to basic service access, including social-economic, institutional, spatial and political barriers, and these are even more prevalent and severe in slum settlements \citep{pierce2017basic}. In Kenya, the Nairobi Urban Health and Demographic Surveillance System (NUHDSS) has collected data since 2003 on household-level access to WaSH services in two large slum areas \citep{beguy2015health}. The NUHDSS data provides a useful starting point for understanding the factors associated with trends in access to WaSH services in slum areas.
+\jd{Joint is not very clear here.}
+Many residents of urban areas face joint obstacles to basic service access, including social-economic, institutional, spatial and political barriers, and these are even more prevalent and severe in slum settlements \citep{pierce2017basic}. In Kenya, the Nairobi Urban Health and Demographic Surveillance System (NUHDSS) has collected data since 2003 on household-level access to water, sanitation and hygiene (WaSH) services in two large slum areas \citep{beguy2015health}. The NUHDSS data provides a useful starting point for understanding the factors associated with trends in access to WaSH services in slum areas.
 
-In studying WaSH services, we have three variables (improved water, toilet facilities and garbage collection) characterizing our main outcome.  The most common approach to analyzing multiple outcomes is to analyze each outcome independently, in a univariate framework. This approach ignores the most likely unmeasured variations and correlation among the outcomes and the multivariate structure of the data. In addition, in situations where multiple binary outcomes are simultaneously observed in longitudinal (for example, at household level) data presents some modelling challenges, since the models should reflect that:
+Our main study outcome is measured by three variables (improved water, toilet facilities and garbage collection). This is a challenging data set for a number of reasons. The ideal model would take a multi-variate approach, to account for correlation between the outcome variables beyond what can be explained by predictors (due either to causal interactions or to unmeansured covariates); and would also allow for temporal correlations between measurements from each household. Dealing with these considerations is complicated by the fact that the outcome variables are binary and thus none of the techniques applicable to modeling correlation in normally distributed outcome variables are appropriate. Situations of this complexity with binary outcomes are most often modeled by analyzing each outcome independently, in a univariate framework.
+
+\jd{Let's discuss here.}
+
+This approach ignores the most likely unmeasured variations and correlation among the outcomes and the multivariate structure of the data. In addition, in situations where multiple binary outcomes are simultaneously observed in longitudinal (for example, at household level) data presents some modelling challenges, since the models should reflect that:
 \begin{enumerate}
 \item The outcomes for each household are likely to be correlated.
 \item The multiple outcomes reflect many of the same underlying processes.
@@ -78,7 +83,7 @@ Dwelling index will be derived from the first principal component score of the P
 \item roof
 \item wall
 \item fuel
-\item lightning
+\item lighting
 \item ownership
 \end{itemize}
 \item \textbf{Assets ownership index}
